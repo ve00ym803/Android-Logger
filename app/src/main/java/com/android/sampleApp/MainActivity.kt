@@ -2,6 +2,7 @@ package com.android.sampleApp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.android.logger.models.LogConfiguration
 import com.android.logger.models.LogDisposalMethod
 import com.android.logger.models.LogModel
 
@@ -30,8 +31,8 @@ class MainActivity : AppCompatActivity() {
             .setLoggerFileName("log")
             .setLoggerDisposalMethod(
                 LogDisposalMethod.DisposeLogsByArchive(
-                    14,
-                    application.filesDir.absolutePath + "/logBackUp"
+                    logExpiryDays = 14,
+                    archiveLocation = application.filesDir.absolutePath + "/logBackUp"
                 )
             )
             .build()
