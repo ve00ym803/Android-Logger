@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "lib-test-app"
 include(":app")
- 
+include(":logger")
