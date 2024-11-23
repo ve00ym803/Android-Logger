@@ -1,4 +1,4 @@
-package com.android.logger.models.utils
+package com.android.logger.utils
 
 import com.android.logger.BuildConfig
 

@@ -1,10 +1,10 @@
 package com.android.logger.models
 
-import com.android.logger.models.utils.DEFAULT_FILE_LOG_ENABLED
-import com.android.logger.models.utils.DEFAULT_FILE_NAME
-import com.android.logger.models.utils.DEFAULT_MAX_FILE_SIZE
-import com.android.logger.models.utils.DEFAULT_PACKAGE_NAME
-import com.android.logger.models.utils.DEFAULT_SYSTEM_LOG_ENABLED
+import com.android.logger.utils.DEFAULT_FILE_LOG_ENABLED
+import com.android.logger.utils.DEFAULT_FILE_NAME
+import com.android.logger.utils.DEFAULT_MAX_FILE_SIZE
+import com.android.logger.utils.DEFAULT_PACKAGE_NAME
+import com.android.logger.utils.DEFAULT_SYSTEM_LOG_ENABLED
 
 class LogModel private constructor() {
 
