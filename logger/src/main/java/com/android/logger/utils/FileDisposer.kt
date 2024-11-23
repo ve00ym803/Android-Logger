@@ -120,8 +120,7 @@ class FileDisposer(context: Context, params: WorkerParameters) : Worker(context,
             }
         }
 
-        sourceFile.delete()
-        return true
+        return sourceFile.delete()
     }
 
     private fun deleteFiles(indexedFiles: List<File>) {
