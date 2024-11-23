@@ -9,7 +9,7 @@ import com.android.logger.models.LogModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val logTag = "MainActivityLoggerTest"
+    private val logTag = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         val lgr = Logger(this@MainActivity)
         lgr.setConfigurations(logConfiguration)
 
-        lgr.e(logTag, "Logger initialized")
+        lgr.i("$logTag-LoggerTest", "Logger initialized")
 
     }
 }
