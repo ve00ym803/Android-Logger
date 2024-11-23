@@ -1,13 +1,19 @@
 package com.android.logger.models
 
+import com.android.logger.models.utils.DEFAULT_FILE_LOG_ENABLED
+import com.android.logger.models.utils.DEFAULT_FILE_NAME
+import com.android.logger.models.utils.DEFAULT_MAX_FILE_SIZE
+import com.android.logger.models.utils.DEFAULT_PACKAGE_NAME
+import com.android.logger.models.utils.DEFAULT_SYSTEM_LOG_ENABLED
+
 class LogModel private constructor() {
 
     private var loggerBaseDirectory: String? = null
-    private var isFileLogEnabled: Boolean = true
-    private var isSystemLogEnabled: Boolean = true
-    private var maxFileSize: Int = 1024 * 1024
-    private var packageName: String = "com.android.logger"
-    private var fileName: String = "log"
+    private var isFileLogEnabled: Boolean = DEFAULT_FILE_LOG_ENABLED
+    private var isSystemLogEnabled: Boolean = DEFAULT_SYSTEM_LOG_ENABLED
+    private var maxFileSize: Int = DEFAULT_MAX_FILE_SIZE
+    private var packageName: String = DEFAULT_PACKAGE_NAME
+    private var fileName: String = DEFAULT_FILE_NAME
     private var disposalMethod: LogDisposalMethod? = null
 
     companion object {

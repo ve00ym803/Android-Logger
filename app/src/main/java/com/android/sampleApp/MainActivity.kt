@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
             .setLoggerBaseDirectory(
                 if (!mediaDirs.isNullOrEmpty()) mediaDirs[0].absolutePath + loggerPath else internalFilesDir.absolutePath + loggerPath
             )
-            .setLoggerIsFileLogEnabled(BuildConfig.FILE_LOGGING_STATUS)
-            .setLoggerIsSystemLogEnabled(BuildConfig.SYSTEM_LOGGING_STATUS)
+            .setLoggerIsFileLogEnabled(true)
+            .setLoggerIsSystemLogEnabled(true)
             .setLoggerMaxFileSize(1024)
             .setLoggerPackageName(BuildConfig.APPLICATION_ID)
             .setLoggerFileName("log")
