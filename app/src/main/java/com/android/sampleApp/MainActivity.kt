@@ -2,11 +2,15 @@ package com.android.sampleApp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.android.logger.Logger
 import com.android.logger.models.LogConfiguration
 import com.android.logger.models.LogDisposalMethod
 import com.android.logger.models.LogModel
 
 class MainActivity : AppCompatActivity() {
+
+    private val logTag = "MainActivityLoggerTest"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -14,13 +18,13 @@ class MainActivity : AppCompatActivity() {
         initLogger()
     }
 
-    private fun initLogger(){
+    private fun initLogger() {
 
         val mediaDirs = application.externalMediaDirs
         val internalFilesDir = application.filesDir
         val loggerPath = "/logger_" + BuildConfig.VERSION_NAME
 
-        LogModel.builder()
+        val logConfiguration = LogModel.builder()
             .setLoggerBaseDirectory(
                 if (!mediaDirs.isNullOrEmpty()) mediaDirs[0].absolutePath + loggerPath else internalFilesDir.absolutePath + loggerPath
             )
@@ -36,5 +40,11 @@ class MainActivity : AppCompatActivity() {
                 )
             )
             .build()
+
+        val lgr = Logger(this@MainActivity)
+        lgr.setConfigurations(logConfiguration)
+
+        lgr.e(logTag, "Logger initialized")
+
     }
 }
