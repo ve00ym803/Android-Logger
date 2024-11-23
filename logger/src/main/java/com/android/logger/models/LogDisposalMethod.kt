@@ -1,15 +1,19 @@
 package com.android.logger.models
 
-sealed class LogDisposalMethod(
-    val disposeAfter: Int,
-    val disposeLocation: String? = null
-) {
-    class DisposeLogsByArchive(
-        logExpiryDays: Int,
-        archiveLocation: String
-    ) : LogDisposalMethod(logExpiryDays, archiveLocation)
+import com.android.logger.utils.MIN_FILE_DISPOSAL_BY_ARCHIVE_DAYS_COUNT
+import com.android.logger.utils.MIN_FILE_DISPOSAL_BY_DELETION_DAYS_COUNT
 
-    class DisposeLogsByDeletion(
-        logExpiryDays: Int
-    ) : LogDisposalMethod(logExpiryDays)
+sealed class LogDisposalMethod(
+    var disposeAfter: Int,
+    var disposeLocation: String? = null
+) {
+    class DisposeLogsByDeletion(logExpiryDays: Int) : LogDisposalMethod(
+        disposeAfter = if (logExpiryDays < MIN_FILE_DISPOSAL_BY_DELETION_DAYS_COUNT) MIN_FILE_DISPOSAL_BY_DELETION_DAYS_COUNT else logExpiryDays
+    )
+
+    class DisposeLogsByArchive(logExpiryDays: Int, archiveLocation: String) : LogDisposalMethod(
+        disposeAfter = if (logExpiryDays < MIN_FILE_DISPOSAL_BY_ARCHIVE_DAYS_COUNT) MIN_FILE_DISPOSAL_BY_ARCHIVE_DAYS_COUNT else logExpiryDays,
+        disposeLocation = archiveLocation
+    )
 }
+

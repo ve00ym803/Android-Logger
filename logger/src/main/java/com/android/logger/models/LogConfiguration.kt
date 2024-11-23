@@ -1,7 +1,7 @@
 package com.android.logger.models
 
 data class LogConfiguration (
-    val loggerBaseDirectory: String,
+    val baseDirectory: String,
     val isFileLogEnabled: Boolean,
     val isSystemLogEnabled: Boolean,
     val maxFileSize: Int,

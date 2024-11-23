@@ -2,7 +2,7 @@ package com.android.logger.models
 
 import com.android.logger.utils.DEFAULT_FILE_LOG_ENABLED
 import com.android.logger.utils.DEFAULT_FILE_NAME
-import com.android.logger.utils.DEFAULT_MAX_FILE_SIZE
+import com.android.logger.utils.DEFAULT_MAX_FILE_SIZE_IN_KB
 import com.android.logger.utils.DEFAULT_PACKAGE_NAME
 import com.android.logger.utils.DEFAULT_SYSTEM_LOG_ENABLED
 
@@ -11,7 +11,7 @@ class LogModel private constructor() {
     private var loggerBaseDirectory: String? = null
     private var isFileLogEnabled: Boolean = DEFAULT_FILE_LOG_ENABLED
     private var isSystemLogEnabled: Boolean = DEFAULT_SYSTEM_LOG_ENABLED
-    private var maxFileSize: Int = DEFAULT_MAX_FILE_SIZE
+    private var maxFileSize: Int = DEFAULT_MAX_FILE_SIZE_IN_KB
     private var packageName: String = DEFAULT_PACKAGE_NAME
     private var fileName: String = DEFAULT_FILE_NAME
     private var disposalMethod: LogDisposalMethod? = null
@@ -31,7 +31,7 @@ class LogModel private constructor() {
     fun build(): LogConfiguration {
 
         return LogConfiguration(
-            loggerBaseDirectory = loggerBaseDirectory ?: throw IllegalArgumentException("Logger base directory must not be null"),
+            baseDirectory = loggerBaseDirectory ?: throw IllegalArgumentException("Logger base directory must not be null"),
             isFileLogEnabled = isFileLogEnabled,
             isSystemLogEnabled = isSystemLogEnabled,
             maxFileSize = maxFileSize,
