@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         val lgr = Logger(this@MainActivity)
         lgr.setConfigurations(logConfiguration)
 
-        lgr.i("$logTag-LoggerTest", "Logger initialized")
+        lgr.e("$logTag-LoggerTest", "Logger initialized")
 
     }
 }

@@ -7,6 +7,11 @@ import com.android.logger.models.LogConfiguration
 import com.android.logger.models.LogDisposalMethod
 import com.android.logger.utils.FileGenerator
 import com.android.logger.worker.WorkerManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileWriter
@@ -22,6 +27,9 @@ class Logger(private val context: Context) {
     private var logDisposalMethod: LogDisposalMethod? = null
     private var preferences: SharedPreferences? = null
     private var fileGenerator: FileGenerator? = null
+
+    private val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+    private var coroutineDispatcher = Dispatchers.IO
 
     fun setConfigurations(configurations: LogConfiguration?) {
 
@@ -41,7 +49,8 @@ class Logger(private val context: Context) {
 
             val logBaseDirExists = if (!logBaseDir.exists()) {
                 logBaseDir.mkdirs()
-            } else true
+            }
+            else true
 
             Log.w("$logTag : logBaseDir", "${logBaseDir.absolutePath}, baseDirExists => $logBaseDirExists")
 
@@ -53,7 +62,8 @@ class Logger(private val context: Context) {
 
                         val logDisposeDirExists = if (!logDisposeDir.exists()) {
                             logDisposeDir.mkdirs()
-                        } else true
+                        }
+                        else true
 
                         Log.w("$logTag : logDisposeDir", "${logDisposeDir.absolutePath}, disposeDirExists => $logDisposeDirExists")
                     }
@@ -102,7 +112,7 @@ class Logger(private val context: Context) {
         }
     }
 
-    private fun appendLog(logType: String, data: String) {
+    private fun appendLog(logType: String, data: String) = coroutineScope.launch (coroutineDispatcher) {
         try {
             fileGenerator?.let { generator ->
                 generator.getWritableLogFile()?.let { logFile ->
@@ -121,5 +131,9 @@ class Logger(private val context: Context) {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    fun cancel() {
+        coroutineScope.cancel()
     }
 }
