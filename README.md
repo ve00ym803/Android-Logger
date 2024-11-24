@@ -33,7 +33,7 @@ Next, add the library dependency in your app-level `build.gradle` file:
 ```gradle
 //In build.gradle.kts (app-level)
 dependencies {
-    implementation'com.github.ve00ym803:Android-Logger:<LATEST-VERSION>'
+    implementation("com.github.ve00ym803:Android-Logger:<LATEST-VERSION>")
 }
 ```
 
