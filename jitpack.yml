@@ -1,0 +1,8 @@
+# configuration file for building snapshots and releases with jitpack.io
+jdk:
+  - openjdk8
+before_install:
+  - ./scripts/prepareJitpackEnvironment.sh
+install:
+  - FILE="-Dfile=release/logger-release-1.1.aar"
+  - mvn install:install-file $FILE -DgroupId=com.github.ve00ym803 -DartifactId=Android-Logger -Dversion=1.1 -Dpackaging=aar -DgeneratePom=true

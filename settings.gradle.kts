@@ -3,6 +3,8 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+
+        mavenLocal() // to publish plugin locally
     }
 }
 dependencyResolutionManagement {
