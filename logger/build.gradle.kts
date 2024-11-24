@@ -4,7 +4,7 @@ plugins {
     id("maven-publish") // to publish library
 }
 
-val libraryVersionName = "1.1" // Define the version at the top level
+val libraryVersionName = "1.2" // Define the version at the top level
 
 android {
     namespace = "com.android.logger"
@@ -69,6 +69,6 @@ publishing {
 }
 
 dependencies {
-    implementation("androidx.work:work-runtime-ktx:2.10.0")
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
     testImplementation("junit:junit:4.13.2")
 }
