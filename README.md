@@ -17,12 +17,12 @@ An easy-to-use logging library for Android applications to enhance debugging and
 To use this library, add the JitPack repository to your project-level `build.gradle` or `settings.gradle` file:
 
 ```gradle
-// In settings.gradle
+// In settings.gradle.kts
 dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven(url = "https://jitpack.io")
     }
 }
 ```
