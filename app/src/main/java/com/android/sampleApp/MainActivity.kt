@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         val mediaDirs = application.externalMediaDirs
         val internalFilesDir = application.filesDir
-        val loggerPath = "/logger_" + BuildConfig.VERSION_NAME
+        val loggerPath = "/logger_" + BuildConfig.VERSION_NAME + "_" + com.android.logger.BuildConfig.LIBRARY_VERSION
 
         val logConfiguration = LogModel.builder()
             .setLoggerBaseDirectory(
