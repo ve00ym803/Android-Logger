@@ -9,6 +9,7 @@ import com.android.logger.utils.FileGenerator
 import com.android.logger.worker.WorkerManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
@@ -29,7 +30,10 @@ class Logger(private val context: Context) {
     private var fileGenerator: FileGenerator? = null
 
     private val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-    private var coroutineDispatcher = Dispatchers.IO
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private val coroutineDispatcher = Dispatchers.IO.limitedParallelism(parallelism = 1)
+
 
     fun setConfigurations(configurations: LogConfiguration?) {
 
